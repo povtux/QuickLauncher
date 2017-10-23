@@ -16,11 +16,12 @@ namespace QuickLauncher
             string path;
             path = (string)Registry.GetValue("HKEY_CURRENT_USER\\Software\\QuickLauncher", "pluginPath", "");
             if (path == null || path == "")
-                path = (String)Registry.GetValue("HKEY_LOCAL_MACHINE\\Software\\QuickLauncher", "pluginPath", ".");
+                path = (String)Registry.GetValue("HKEY_LOCAL_MACHINE\\SOFTWARE\\QuickLauncher", "pluginPath", ".");
 
             int top = 0;
             Console.WriteLine(path);
             var plugins = GenericPluginLoader<ILauncherPlugin>.LoadPlugins(path);
+            if (plugins == null) Application.Exit();
             foreach (ILauncherPlugin plug in plugins)
             {
                 Console.WriteLine(plug.Name + " " + plug.Version);
