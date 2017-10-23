@@ -31,7 +31,7 @@ namespace QuickLauncher
                 top += uc.Height + 3;
             }
 
-            this.Height = top;
+            Height = (int)(top * 1.2);
 
             this.Location = new System.Drawing.Point(
                 Screen.PrimaryScreen.WorkingArea.Width - this.Width,

@@ -35,14 +35,17 @@ namespace QuickLauncher
 			// Put the icon in the system tray and allow it react to mouse clicks.			
 			ni.MouseClick += new MouseEventHandler(ni_MouseClick);
 			ni.Icon = Resources.SystemTrayApp;
-			ni.Text = "System Tray Utility Application Demonstration Program";
+			ni.Text = "QuickLauncher";
 			ni.Visible = true;
-		}
 
-		/// <summary>
-		/// Releases unmanaged and - optionally - managed resources
-		/// </summary>
-		public void Dispose()
+            // Attach a context menu.
+            ni.ContextMenuStrip = new ContextMenus().Create();
+        }
+
+        /// <summary>
+        /// Releases unmanaged and - optionally - managed resources
+        /// </summary>
+        public void Dispose()
 		{
 			// When the application closes, this will remove the icon from the system tray immediately.
 			ni.Dispose();
@@ -55,8 +58,12 @@ namespace QuickLauncher
 		/// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
 		void ni_MouseClick(object sender, MouseEventArgs e)
 		{
-            mf.Focus();
-            mf.Show();
+            // Handle mouse button clicks.
+            if (e.Button == MouseButtons.Left)
+            {
+                mf.Focus();
+                mf.Show();
+            }
         }
 	}
 }
